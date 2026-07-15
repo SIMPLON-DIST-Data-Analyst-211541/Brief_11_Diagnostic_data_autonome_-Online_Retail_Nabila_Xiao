@@ -1,0 +1,15 @@
+# Environnement virtuel (très lourd, à ne jamais commit)
+mon_env/
+venv/
+env/
+
+# Fichiers temporaires de Python
+__pycache__/
+*.pyc
+
+# Fichiers temporaires de Jupyter Notebooks
+.ipynb_checkpoints/
+
+# Fichiers système (macOS et Windows)
+.DS_Store
+Thumbs.db
