@@ -36,6 +36,7 @@ print(df.dtypes)
 
 df["Invoice"] = df["Invoice"].str.strip()
 df["StockCode"] = df["StockCode"].str.strip()
+df = df[df["StockCode"].str.match(r"^\d{5}$|^\d{5}[A-Za-z]$")].copy()
 df["Description"] = df["Description"].str.lower()
 df["Country"] = df["Country"].str.strip().str.title()
 print(df["Country"].value_counts().sort_index())
@@ -48,7 +49,11 @@ print(f"Teeeeeest :\n{df['InvoiceDate'].isna().head().to_string()}")
 print(df['InvoiceDate'].isna().sum())
 
 df["InvoiceDate"] = pd.to_datetime(df["InvoiceDate"],format="mixed", dayfirst = True, errors = "coerce")
-print(df['InvoiceDate'].isna().sum())
+
+nb_dates_invalides = df["InvoiceDate"].isna().sum()
+print("Nombre de dates invalides :", nb_dates_invalides)
+
+
 
 # ==========================================================
 # 6. CONVERSION DE CUSTOMER ID
@@ -77,7 +82,7 @@ nbr_ligne_supprimer = nombre_ligne_brut-nombre_ligne_restante
 print(f"Nombre de lignes supprimees : {nbr_ligne_supprimer} ")
 
 # ==========================================================
-# 8. ANALYSE DES VALEURS ABERANTES
+# 8. ANALYSE DES ANOMALIES METIER
 # ==========================================================
 df_zero_price = df[df['Price'] == 0] # nombre de ligne à zéro
 print(df_zero_price.shape)
@@ -95,10 +100,6 @@ df_zero = df[ (df["Price"] == 0) & (df["Quantity"] <= 0)].copy()
 # Dataset sans ces lignes
 df_clean = df.drop(df_zero.index)
 
-# ==========================================================
-# 9. ANALYSE DES ANOMALIES METIER
-# ==========================================================
-
 df_description = df_clean[df_clean["Description"].isna()]  # nombre de ligne vides
 print( df_description.shape)
 print( df_description.head().to_string())
@@ -112,22 +113,27 @@ print(f'nombre de lignes nettoyé cette étape : {df_clean.shape[0]-df_def.shape
 df_def_test = df_def[ (df_def["Price"] > 0) & (df_def["Quantity"] < 0)].copy()
 df_def_test2 = df_def[ (df_def["Price"] < 0) & (df_def["Quantity"] > 0)].copy()
 df_def_test3 = df_def[ (df_def["Price"] < 0) & (df_def["Quantity"] < 0)].copy()
-print(f"def_test est: {df_def_test.head().to_string()}")
-print(f"def_test2 est: {df_def_test2.head().to_string()}")
-print(f"def_test3 est: {df_def_test3.head().to_string()}")
 
-df_bad_debt = df[df["Description"] == "adjust bad debt"].copy()
-df_c = df.drop(df_bad_debt.index).copy()
+print("Prix positif et quantité négative :",df_def_test.shape[0])
+print("Prix négatif et quantité positive :",df_def_test2.shape[0])
+print("Prix négatif et quantité négative :",df_def_test3.shape[0])
+
+df_bad_debt = df_def[df_def["Description"] == "adjust bad debt"].copy()
+df_c = df_def.drop(df_bad_debt.index).copy()
+
 print(f'nombre de lignes correspondentes aux clients  creances irroucouvrable tape : {df_def.shape[0]-df_c.shape[0]}')
 
 print(df_c.sample(10).to_string())
 print(df_def_test.shape[0])
 print(df_def_test2.shape[0])
 
+df_ventes = df_c[df_c["Type_Transaction"] == "Vente"].copy()
+df_annulations = df_c[df_c["Type_Transaction"] == "Annulation"].copy()
 df_c["Chiffre_Affaires"] = df_c["Quantity"] * df_c["Price"]
-print(df_c.shape)
+
 
 df_cancelled = df_c[df_c["Invoice"].str.startswith("C")].copy()
 print(df_cancelled.shape)
 
+df_c.to_csv('online_retail_clean.csv',index=False)
 
