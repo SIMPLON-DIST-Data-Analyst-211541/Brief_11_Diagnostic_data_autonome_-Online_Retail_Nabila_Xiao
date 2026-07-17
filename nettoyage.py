@@ -39,6 +39,10 @@ df["StockCode"] = df["StockCode"].astype(str).str.strip()
 pattern = r"^\d{5}$|^\d{5}[A-Za-z]$"
 df = df[df["StockCode"].str.match(pattern, na=False)].copy()
 
+df_gift = df[df["StockCode"].str.contains(r"POST", case=False, na=False)]
+print(f'-----teeest----{df_gift.head(20)}')
+
+
 df["Description"] = df["Description"].str.lower()
 df["Country"] = df["Country"].str.strip().str.title()
 print(df["Country"].value_counts().sort_index())
@@ -129,8 +133,8 @@ print(df_c.sample(10).to_string())
 print(df_def_test.shape[0])
 print(df_def_test2.shape[0])
 
-df_ventes = df_c[df_c["Type_Transaction"] == "Vente"].copy()
-df_annulations = df_c[df_c["Type_Transaction"] == "Annulation"].copy()
+#df_ventes = df_c[df_c["Type_Transaction"] == "Vente"].copy()
+#df_annulations = df_c[df_c["Type_Transaction"] == "Annulation"].copy()
 df_c["Chiffre_Affaires"] = df_c["Quantity"] * df_c["Price"]
 
 
