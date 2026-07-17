@@ -64,8 +64,8 @@ print("Nombre de dates invalides :", nb_dates_invalides)
 # ==========================================================
 # 6. CONVERSION DE CUSTOMER ID
 # ==========================================================
-
-df['Customer ID'] = df['Customer ID'].fillna(99999).astype(int) # création client fictif pour imputer les valeur manquantes
+df['Customer_ID'] = df['Customer ID']
+df['Customer_ID'] = df['Customer_ID'].fillna(99999).astype(int) # création client fictif pour imputer les valeur manquantes
 
 # ==========================================================
 # 7.  SUPRESSION DES DOUBLONS STRICTEMENT IDENTIQUE
@@ -133,8 +133,7 @@ print(df_c.sample(10).to_string())
 print(df_def_test.shape[0])
 print(df_def_test2.shape[0])
 
-#df_ventes = df_c[df_c["Type_Transaction"] == "Vente"].copy()
-#df_annulations = df_c[df_c["Type_Transaction"] == "Annulation"].copy()
+
 df_c["Chiffre_Affaires"] = df_c["Quantity"] * df_c["Price"]
 
 
