@@ -35,8 +35,10 @@ print(df.dtypes)
 # ==========================================================
 
 df["Invoice"] = df["Invoice"].str.strip()
-df["StockCode"] = df["StockCode"].str.strip()
-df = df[df["StockCode"].str.match(r"^\d{5}$|^\d{5}[A-Za-z]$")].copy()
+df["StockCode"] = df["StockCode"].astype(str).str.strip()
+pattern = r"^\d{5}$|^\d{5}[A-Za-z]$"
+df = df[df["StockCode"].str.match(pattern, na=False)].copy()
+
 df["Description"] = df["Description"].str.lower()
 df["Country"] = df["Country"].str.strip().str.title()
 print(df["Country"].value_counts().sort_index())
