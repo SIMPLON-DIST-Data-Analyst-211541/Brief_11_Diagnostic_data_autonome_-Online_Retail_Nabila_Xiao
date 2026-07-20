@@ -13,3 +13,4 @@ __pycache__/
 # Fichiers système (macOS et Windows)
 .DS_Store
 Thumbs.db
+*.db
