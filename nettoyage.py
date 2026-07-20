@@ -43,7 +43,7 @@ df_gift = df[df["StockCode"].str.contains(r"POST", case=False, na=False)]
 print(f'-----teeest----{df_gift.head(20)}')
 
 
-df["Description"] = df["Description"].str.lower()
+df["Description"] = df["Description"].str.strip().str.lower()
 df["Country"] = df["Country"].str.strip().str.title()
 print(df["Country"].value_counts().sort_index())
 
