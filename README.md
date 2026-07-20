@@ -18,21 +18,26 @@ Le dataset d'origine provient de [Kaggle](https://www.kaggle.com/datasets/rabiee
 Le dépôt est organisé de la manière suivante pour garantir la modularité et la lisibilité du code :
 
 ```text
-├── .gitignore                    # Fichiers à exclure (ex: online_retail_II.csv si trop lourd)
-├── README.md                     # Présentation générale du projet (Vitrine GitHub)
-│
-├── online_retail_II.csv          # Dataset brut (94.85 Mo) - Optionnel si mis dans le .gitignore
-├── online_retail_clean.csv       # Dataset nettoyé (généré automatiquement par nettoyage.py)
-│
-├── main.py                       # Point d'entrée unique (Script de contrôle simplifié avec 'sys' et'os')
-├── nettoyage.py                  # Étape 1 du LIVRABLE 1 : Script de nettoyage
-├── analyse.py                    # Étape 2 du LIVRABLE 1 : Script de calculs et de graphiques
-│
-├── creation_base.sql             # LIVRABLE 2 : Script de création de la base SQLite
-├── requetes_reporting.sql        # LIVRABLE 2 : Requêtes de Business Intelligence commentées
-│
-├── note_de_cadrage_metier.md       # LIVRABLE 3 : Document de cadrage (vision Directeur Commercial)
-└── fiche_de_pilotage_de_mission.md # LIVRABLE 4 : Document technique (vision Chef de Projet / Tech Lead)
+Brief_11_Diagnostic_data_autonome/
+├── docs/                   # 1. Le pilotage : pourquoi on fait ce projet
+│   ├── Fiche_de_pilotage_de_mission.md
+│   └── Note_de_cadrage.md
+├── src/                    # 2. Le moteur analyse
+│   ├── nettoyage.py - nettoyage de donnée brut en donnée clean
+│   └── analyse.py - analayse exploratoires et visuels
+├── sql/                    # 3. La base : les requêtes de reporting
+│   ├── 01_verification_avant_modelisation.sql
+│   ├── 02_creation_de_tables.sql
+│   ├── 03_chargement_de_donnees.sql
+│   ├── 04_test_verif_chargement.sql
+│   └── 05_analyse_metier.sql
+├── data/                   # 4. Le carburant : les données (CSV)
+│   ├── online_retail_ll.csv  - donnée brut téléchargé de Kaggole
+│   └── online_retail_clean.csv - donnée clean généré par nettoyage.py
+├── .gitignore
+├── main.py                 # Point d'entrée à la racine
+├── README.md
+└── requirements.txt
 ```
 🧹 1. Pipeline de Nettoyage (nettoyage.py)
 
