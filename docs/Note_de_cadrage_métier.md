@@ -1,52 +1,28 @@
-# 📋 Fiche de Pilotage de Mission : Projet Retail Revelations
+# Note de Cadrage et Synthèse Métier : Analyse des Performances Retail
 
-## 🎯 1. Cadrage Métier & Problématiques
+## 1. Présentation du Projet
+Ce projet consiste en un diagnostic approfondi des performances d'un site de e-commerce spécialisé dans la vente au détail (retail), basé au Royaume-Uni. L'analyse repose sur une base de données transactionnelle exhaustive couvrant une période de plus de deux ans. Cette profondeur historique permet de modéliser les comportements d'achat, d'évaluer la saisonnalité et d'étudier l'évolution de la rentabilité sur le long terme.
 
-### Analyse et Compréhension du Dataset
-*   **Secteur :** E-commerce spécialisé dans le retail (ventes au détail) , pays: UK.
-*   **Périmètre :** Historique complet des mouvements sur plus de 24 mois.
-*   **Objectif :** Diagnostic de performance, optimisation des stocks et segmentation de la clientèle.
+## 2. Enjeux et Méthodologie
+L'exploitation de cet historique de 24 mois+ est cruciale pour plusieurs raisons :
+*   **Analyse Temporelle :** La comparaison interannuelle (2010 vs 2011) permet d'isoler des tendances structurelles plutôt que des fluctuations passagères.
+*   **Complexité Métier :** Le secteur du retail en ligne impose une gestion fine des anomalies. Le traitement des transactions annulées (préfixe 'C'), des retours produits et du comportement des clients non enregistrés (client fictif "99999") est essentiel pour garantir la fiabilité des indicateurs financiers (CA réel).
 
-### Problématiques Métier
-*   **Performance Commerciale :** Identification des "Best-sellers" et des segments à forte rentabilité.
-*   **Gestion des Risques :** Analyse des taux de retours pour optimiser la logistique et la qualité produit.
-*   **Expansion Géographique :** Segmentation UK vs International pour orienter les investissements.
-*   **Saisonnalité :** Corrélation entre pics de ventes annuels et besoins en gestion de stock.
+## 3. Synthèse de l'Analyse Métier
 
----
+### A. Performance Produit : Rentabilité vs Risque
+*   **Top Best-Sellers :** Ces produits constituent le moteur de la croissance. Une gestion proactive des stocks est impérative pour éviter les ruptures et maximiser les opportunités de vente.
+*   **Top Retours (Produits à risque) :** Ces articles pèsent lourdement sur la marge et génèrent des coûts opérationnels masqués (logistique retour, traitement SAV). Un suivi strict de ces références est préconisé afin d'envisager, si nécessaire, un déréférencement ou une révision de leur fiche descriptive.
 
-## 🔍 2. Diagnostic des Anomalies
-L'exploration a révélé plusieurs points de vigilance :
-*   **Données manquantes :** Traitement nécessaire sur les colonnes `Description` et `Customer ID`.
-*   **Ventes anonymes :** Identification d'un volume significatif de ventes sans client enregistré.
-*   **Formatage technique :** Correction du format de la colonne `InvoiceDate` (type `datetime`).
-*   **Valeurs financières négatives :** Distinction entre annulations, avoirs et retours clients.
-*   **Doublons :** Audit des 34 335 transactions dupliquées pour assurer l'intégrité comptable.
+### B. Segmentation Clientèle (CA vs Retours)
+*   **Top 10 CA (Ambassadeurs) :** Représentent la valeur fidèle de l'entreprise. Cette cible doit bénéficier de stratégies de rétention : programmes de fidélité, offres VIP et campagnes promotionnelles personnalisées.
+*   **Top 10 Retours (Profils à risque) :** Nécessitent une investigation spécifique. L'objectif est de distinguer l'erreur de saisie ponctuelle d'un problème systémique (insatisfaction produit, inadéquation entre le descriptif en ligne et la réalité).
 
----
+### C. Saisonnalité et Stratégie Opérationnelle
+L'analyse sur 24 mois a mis en évidence un pic d'activité intense et récurrent chaque mois de novembre. Cette tendance, confirmée sur deux années consécutives, reflète les cycles classiques du e-commerce (Black Friday, préparation des fêtes). 
+*   **Leviers stratégiques :** Cette prévisibilité permet d'optimiser la *supply chain* (anticiper les stocks), de planifier les ressources humaines et d'allouer les budgets marketing pour maximiser le ROI.
 
-## 🧹 3. Pipeline de Nettoyage
-1.  **Formatage :** Standardisation des types de données (`datetime`, `int`).
-2.  **Normalisation :** Harmonisation des intitulés géographiques (`Country` au format *Title*).
-3.  **Gestion du "Client Fictif" (ID 99999) :** Conservation des ventes anonymes (13% du CA total), justifiée par leur poids financier.
-4.  **Assainissement :** Suppression des espaces inutiles et filtrage des lignes à prix/quantité nuls.
-5.  **Audit Comptable :** Isolation des mouvements spécifiques (*Adjust Bad Debt*, frais généraux, échantillons, tests).
-
----
-
-## 📈 4. Synthèse des Résultats & Recommandations
-
-| Axe d'analyse | Constat | Recommandation Stratégique |
-| :--- | :--- | :--- |
-| **Saisonnalité** | Pic massif chaque mois de novembre | Anticiper les stocks et renforcer les ressources SAV/Logistique. |
-| **Produits** | Certains articles ont un taux de retour élevé | Envisager un déréférencement ou une révision de la fiche produit. |
-| **Clients** | Segmentation CA vs Retours | Créer des offres VIP pour les "Ambassadeurs" et enquêter sur les comptes à risque. |
-| **Marchés** | Domination du marché UK | Évaluer le potentiel de croissance à l'international (hors UK). |
-
----
-
-## 🚀 5. Prochaines Étapes
-
-*   **Automatisation :** Industrialisation du pipeline de nettoyage via un script modulaire et réutilisable pour le traitement de nouveaux flux de données.
-*   **Dashboarding :** Mise en place d'un tableau de bord dynamique permettant une visualisation en temps réel des indicateurs clés (KPIs) : Top produits, segmentation clients, saisonnalité mensuelle et performance par secteur géographique.
-*   **Approfondissement Analytique :** Utilisation de requêtes SQL complexes pour confirmer les tendances observées et affiner la précision de l'analyse segmentée.
+### D. Expansion Géographique : UK vs International
+En tant qu'acteur basé au Royaume-Uni, l'entreprise doit évaluer son équilibre entre domination domestique et expansion internationale. L'analyse segmentée permet d'arbitrer les décisions d'investissement :
+*   **Consolidation :** Sécuriser la position dominante sur le marché local.
+*   **Croissance :** Identifier les marchés internationaux à fort potentiel pour diversifier la dépendance géographique du chiffre d'affaires.
