@@ -27,17 +27,17 @@ print(f"Pertes totales (Annulations)      : {ca_total_perte:,.2f} £")
 # ==========================================================
 
 # 1. Top 10 produits par CA/Quantité (Best-sellers)
-top10_produit_ca = df_ventes.groupby("Description", as_index=False)["Chiffre_Affaires"].sum().reset_index()
-top10_produit_ca =top10_produit_ca.sort_values(by="Chiffre_Affaires", ascending=False).head(10)
+top10_produit_ca = df_ventes.groupby(["StockCode","Description"], as_index=False)["Chiffre_Affaires"].sum().reset_index()
+top10_produit_ca = top10_produit_ca.sort_values(by="Chiffre_Affaires", ascending=False).head(10)
 
-top10_produit_qty = df_ventes.groupby("Description", as_index=False)["Quantity"].sum().reset_index()
+top10_produit_qty = df_ventes.groupby(["StockCode","Description"], as_index=False)["Quantity"].sum().reset_index()
 top10_produit_qty = top10_produit_qty.sort_values(by="Quantity", ascending=False).head(10)
 
 #2. Top 10 produits annulés par CA/Quantité (Taux de retour / Anomalies)
-top10_produit_annul_ca = df_annulations.groupby("Description", as_index=False)["Chiffre_Affaires"].sum().reset_index()
+top10_produit_annul_ca = df_annulations.groupby(["StockCode","Description"], as_index=False)["Chiffre_Affaires"].sum().reset_index()
 top10_produit_annul_ca =top10_produit_annul_ca .sort_values(by="Chiffre_Affaires", ascending=True).head(10)
 
-top10_produit_annul_qty = df_annulations.groupby("Description", as_index=False)["Quantity"].sum().reset_index()
+top10_produit_annul_qty = df_annulations.groupby(["StockCode","Description"], as_index=False)["Quantity"].sum().reset_index()
 top10_produit_annul_qty = top10_produit_annul_qty.sort_values(by="Quantity", ascending=True).head(10)
 
 
