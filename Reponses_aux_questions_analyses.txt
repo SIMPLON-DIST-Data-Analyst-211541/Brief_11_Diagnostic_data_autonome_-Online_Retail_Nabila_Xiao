@@ -1,0 +1,41 @@
+Rapport – Réponses aux questions d'analyse
+Introduction
+Dans le cadre de cette mission confiée par Numeris Conseil, notre objectif était de réaliser un diagnostic data complet à partir du dataset Online Retail II. Ce rapport présente les réponses argumentées aux différentes questions d'analyse du brief et justifie les principaux choix réalisés au cours du projet, depuis le cadrage jusqu'à la modélisation relationnelle.
+________________________________________
+1. Cadrage de mission
+En quoi ce dataset et cette problématique sont-ils pertinents et réalistes pour une mission de diagnostic pré-ML ? Qu'est-ce qui aurait pu justifier d'écarter ce dataset ?
+Réponse
+Le dataset Online Retail II est pertinent pour une mission de diagnostic pré-ML car il contient plus d'un million de transactions réelles avec des anomalies représentatives d'un contexte professionnel : valeurs manquantes, doublons, retours, mouvements comptables et incohérences. La problématique retenue est également réaliste puisqu'elle vise à identifier les produits performants, les retours, les pays les plus rentables et les périodes de forte activité afin d'aider RetailNova à mieux comprendre son activité avant toute modélisation prédictive.
+Ce diagnostic permet également de préparer un jeu de données fiable pour une future équipe ML et une base SQL exploitable par les équipes BI et Reporting.
+Le dataset aurait pu être écarté s'il avait été trop incomplet, trop petit ou si les variables disponibles ne permettaient pas de répondre à la problématique métier.
+________________________________________
+2. Stratégie de nettoyage
+Quelles décisions de nettoyage étaient discutables ? Comment aurait-on pu les trancher différemment, et avec quel impact sur le diagnostic ?
+Réponse
+Certaines décisions de nettoyage ont nécessité un arbitrage. Nous avons choisi de remplacer les Customer_ID manquants par 99999 afin de conserver les ventes tout en identifiant les clients inconnus. Une autre solution aurait été de supprimer ces lignes, mais cela aurait réduit le chiffre d'affaires analysé.
+Nous avons supprimé uniquement les doublons stricts afin de ne pas supprimer des produits appartenant à une même facture. Les lignes où Price = 0 et Quantity = 0 ont été supprimées, tandis que les retours et les annulations ont été conservés, car ils apportent une information métier importante. Enfin, les mouvements comptables et les références ne correspondant pas à de véritables produits ont été isolés afin de produire un diagnostic plus fiable.
+________________________________________
+3. Analyse exploratoire
+Ton analyse répond-elle vraiment à la problématique posée en Étape 1, ou t'a-t-elle amené à la reformuler ? Si oui, pourquoi ?
+Réponse
+L'analyse répond à la problématique initiale puisqu'elle permet d'identifier les produits les plus vendus, les plus rentables, les produits les plus retournés, les pays les plus performants ainsi que les périodes de forte activité.
+L'exploration des données nous a toutefois amenés à préciser la problématique en distinguant les ventes réelles des retours, des annulations et des mouvements comptables. Cette distinction était nécessaire afin de produire des indicateurs fiables et représentatifs de l'activité commerciale.
+________________________________________
+4. Modélisation relationnelle et SQL
+Pourquoi ce schéma plutôt qu'un autre ? Qu'est-ce qui aurait justifié de garder une table unique ? Quelles requêtes étaient indispensables au diagnostic et lesquelles étaient superflues ?
+Réponse
+Nous avons choisi un schéma relationnel composé des tables Clients, Produits, Commandes et Lignes_Commande afin de limiter les redondances et de garantir la cohérence des données grâce aux clés primaires et étrangères. Cette organisation facilite également les analyses réalisées par les équipes BI et Reporting.
+Une table unique aurait pu convenir pour une analyse simple ou un petit volume de données, mais elle aurait été moins évolutive et plus difficile à maintenir.
+Les requêtes essentielles étaient celles permettant d'analyser les ventes par produit, par client, par pays et par période. Les requêtes purement techniques ou sans lien avec la problématique métier ont été considérées comme secondaires.
+________________________________________
+5. Pilotage de la mission
+Sur quel arbitrage l'équipe a-t-elle le plus hésité, et pourquoi ce choix final ?
+Réponse
+Le principal arbitrage concernait le traitement des données atypiques. Nous avons hésité entre supprimer certaines informations ou les conserver afin de préserver un maximum de données utiles au diagnostic.
+Nous avons finalement choisi de conserver les transactions sans Customer_ID en leur attribuant l'identifiant 99999, ainsi que les retours et les annulations, tout en les distinguant des ventes classiques. Cette décision permet de limiter la perte d'information et de produire un diagnostic plus représentatif de l'activité réelle.
+________________________________________
+Bonus – Ébauche d'indicateurs pour une future modélisation ML
+Dans le cadre d'une future modélisation prédictive, plusieurs variables pourraient être exploitées selon l'objectif du modèle. Par exemple, le mois de la commande, le jour de la semaine, le pays, l'historique des ventes ou encore la fréquence d'achat pourraient servir à prévoir les ventes. Pour la prédiction des retours, des variables comme le nombre de retours précédents, le type de produit ou la quantité commandée pourraient être pertinentes. Ces indicateurs n'ont pas été calculés dans cette mission mais constituent des pistes intéressantes pour les futures équipes ML.
+________________________________________
+Conclusion
+Cette mission nous a permis de réaliser un diagnostic complet des données en justifiant chaque choix effectué lors du nettoyage, de l'analyse exploratoire et de la modélisation SQL. Le résultat est un jeu de données fiable et une base relationnelle exploitable, répondant aux besoins des équipes BI/Reporting tout en préparant le terrain pour de futurs travaux de Machine Learning.

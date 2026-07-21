@@ -1,52 +1,48 @@
-# 📋 Fiche de Pilotage de Mission : Projet Retail Revelations
-
-## 🎯 1. Cadrage Métier & Problématiques
-
-### Analyse et Compréhension du Dataset
-*   **Secteur :** E-commerce spécialisé dans le retail (ventes au détail).
-*   **Périmètre :** Historique complet des mouvements sur plus de 24 mois.
-*   **Objectif :** Diagnostic de performance, optimisation des stocks et segmentation de la clientèle.
-
-### Problématiques Métier
-*   **Performance Commerciale :** Identification des "Best-sellers" et des segments à forte rentabilité.
-*   **Gestion des Risques :** Analyse des retours pour optimiser la logistique et la qualité produit.
-*   **Expansion Géographique :** Segmentation UK vs International pour orienter les investissements.
-*   **Saisonnalité :** Corrélation entre pics de ventes annuels et besoins en gestion de stock.
-
----
-
-## 🔍 2. Diagnostic des Anomalies
-L'exploration a révélé plusieurs points de vigilance :
-*   **Données manquantes :** Traitement nécessaire sur les colonnes `Description` et `Customer ID`.
-*   **Ventes anonymes :** Identification d'un volume significatif de ventes sans client enregistré.
-*   **Formatage technique :** Correction du format de la colonne `InvoiceDate` (type `datetime`).
-*   **Valeurs financières négatives :** Distinction entre annulations, avoirs et retours clients.
-*   **Doublons :** Audit des 34 335 transactions dupliquées pour assurer l'intégrité comptable.
-
----
-
-## 🧹 3. Pipeline de Nettoyage
-1.  **Formatage :** Standardisation des types de données (`datetime`, `int`).
-2.  **Normalisation :** Harmonisation des intitulés géographiques (`Country` au format *Title*).
-3.  **Gestion du "Client Fictif" (ID 99999) :** Conservation des ventes anonymes (13% du CA total), justifiée par leur poids financier.
-4.  **Assainissement :** Suppression des espaces inutiles et filtrage des lignes à prix/quantité nuls.
-5.  **Audit Comptable :** Isolation des mouvements spécifiques (*Adjust Bad Debt*, frais généraux, échantillons, tests).
-
----
-
-## 📈 4. Synthèse des Résultats & Recommandations
-
-| Axe d'analyse | Constat | Recommandation Stratégique |
-| :--- | :--- | :--- |
-| **Saisonnalité** | Pic massif chaque mois de novembre | Anticiper les stocks et renforcer les ressources SAV/Logistique. |
-| **Produits** | Certains articles ont un taux de retour élevé | Envisager un déréférencement ou une révision de la fiche produit. |
-| **Clients** | Segmentation CA vs Retours | Créer des offres VIP pour les "Ambassadeurs" et enquêter sur les comptes à risque. |
-| **Marchés** | Domination du marché UK | Évaluer le potentiel de croissance à l'international (hors UK). |
-
----
-
-## 🚀 5. Prochaines Étapes
-*   **Automatisation :** Création d'un script de nettoyage réutilisable pour les futurs datasets.
-*   **Dashboarding :** Visualisation des KPI en temps réel (Panier moyen, Taux d'attrition).
-*   **Soutenance :** Présentation des gains financiers liés à la gestion des anomalies.
-
+📄 FICHE DE PILOTAGE DE MISSION
+Projet : Retail Revelations – Diagnostic des données de vente
+1. Présentation du projet
+Élément	Description
+Cabinet	Numeris Conseil (fictif)
+Client	RetailNova (entreprise de e-commerce)
+Projet	Analyse et fiabilisation des données de ventes
+Équipe projet	Binôme Data Analyst
+Dataset	Online Retail II (2009-2011)
+________________________________________
+2. Objectifs de la mission
+Cette mission a pour objectif de préparer et fiabiliser les données de vente afin de produire des analyses fiables et de répondre aux besoins métiers du client.
+Les principaux objectifs sont :
+•	améliorer la qualité des données ; 
+•	réaliser une analyse exploratoire des ventes ; 
+•	construire une base de données relationnelle ; 
+•	produire des requêtes SQL destinées aux équipes BI et Reporting. 
+________________________________________
+3. Périmètre de la mission
+Le projet porte uniquement sur le dataset Online Retail II, qui contient plus d'un million de transactions réalisées entre 2009 et 2011.
+Les travaux concernent :
+•	le nettoyage des données ; 
+•	l'analyse exploratoire ; 
+•	la modélisation relationnelle ; 
+•	les requêtes SQL. 
+________________________________________
+4. Livrables
+•	Note de cadrage métier 
+•	Dataset nettoyé 
+•	Notebook Python 
+•	Base de données SQLite 
+•	Requêtes SQL 
+•	README du projet 
+________________________________________
+5. Outils utilisés
+•	Python 
+•	Pandas 
+•	NumPy 
+•	SQLite 
+•	DBeaver 
+•	Git / GitHub 
+•	VS Code 
+________________________________________
+6. Principaux risques identifiés
+•	données manquantes ; 
+•	doublons ; 
+•	transactions particulières (retours, annulations) ; 
+•	données incohérentes pouvant impacter les analyses.
