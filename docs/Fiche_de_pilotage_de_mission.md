@@ -1,31 +1,3 @@
-<<<<<<< HEAD
-# 📋 Fiche de Pilotage de Mission : Projet Retail Revelations
-
-## 🎯 1. Cadrage Métier & Problématiques
-
-### Analyse et Compréhension du Dataset
-*   **Secteur :** E-commerce spécialisé dans le retail (ventes au détail) , pays: UK.
-*   **Périmètre :** Historique complet des mouvements sur plus de 24 mois.
-*   **Objectif :** Diagnostic de performance, optimisation des stocks et segmentation de la clientèle.
-
-### Problématiques Métier
-*   **Performance Commerciale :** Identification des "Best-sellers" et des segments à forte rentabilité.
-*   **Gestion des Risques :** Analyse des taux de retours pour optimiser la logistique et la qualité produit.
-*   **Expansion Géographique :** Segmentation UK vs International pour orienter les investissements.
-*   **Saisonnalité :** Corrélation entre pics de ventes annuels et besoins en gestion de stock.
-
----
-
-## 🔍 2. Diagnostic des Anomalies
-L'exploration a révélé plusieurs points de vigilance :
-*   **Données manquantes :** Traitement nécessaire sur les colonnes `Description` et `Customer ID`.
-*   **Ventes anonymes :** Identification d'un volume significatif de ventes sans client enregistré.
-*   **Formatage technique :** Correction du format de la colonne `InvoiceDate` (type `datetime`).
-*   **Valeurs financières négatives :** Distinction entre annulations, avoirs et retours clients.
-*   **Doublons :** Audit des 34 335 transactions dupliquées pour assurer l'intégrité comptable.
-
----
-=======
 📄 FICHE DE PILOTAGE DE MISSION
 Projet : Retail Revelations – Diagnostic des données de vente
 1. Présentation du projet
@@ -74,7 +46,6 @@ ________________________________________
 •	doublons ; 
 •	transactions particulières (retours, annulations) ; 
 •	données incohérentes pouvant impacter les analyses.
->>>>>>> 7e7db7d (Mise à jour de la fiche de pilotage et de la note de cadrage)
 
 ## 🧹 3. Pipeline de Nettoyage
 1.  **Formatage :** Standardisation des types de données (`datetime`, `int`).
