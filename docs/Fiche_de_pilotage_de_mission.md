@@ -1,51 +1,29 @@
-📄 FICHE DE PILOTAGE DE MISSION
-Projet : Retail Revelations – Diagnostic des données de vente
-1. Présentation du projet
-Élément	Description
-Cabinet	Numeris Conseil (fictif)
-Client	RetailNova (entreprise de e-commerce)
-Projet	Analyse et fiabilisation des données de ventes
-Équipe projet	Binôme Data Analyst
-Dataset	Online Retail II (2009-2011)
-________________________________________
-2. Objectifs de la mission
-Cette mission a pour objectif de préparer et fiabiliser les données de vente afin de produire des analyses fiables et de répondre aux besoins métiers du client.
-Les principaux objectifs sont :
-•	améliorer la qualité des données ; 
-•	réaliser une analyse exploratoire des ventes ; 
-•	construire une base de données relationnelle ; 
-•	produire des requêtes SQL destinées aux équipes BI et Reporting. 
-________________________________________
-3. Périmètre de la mission
-Le projet porte uniquement sur le dataset Online Retail II, qui contient plus d'un million de transactions réalisées entre 2009 et 2011.
-Les travaux concernent :
-•	le nettoyage des données ; 
-•	l'analyse exploratoire ; 
-•	la modélisation relationnelle ; 
-•	les requêtes SQL. 
-________________________________________
-4. Livrables
-•	Note de cadrage métier 
-•	Dataset nettoyé 
-•	Notebook Python 
-•	Base de données SQLite 
-•	Requêtes SQL 
-•	README du projet 
-________________________________________
-5. Outils utilisés
-•	Python 
-•	Pandas 
-•	NumPy 
-•	SQLite 
-•	DBeaver 
-•	Git / GitHub 
-•	VS Code 
-________________________________________
-6. Principaux risques identifiés
-•	données manquantes ; 
-•	doublons ; 
-•	transactions particulières (retours, annulations) ; 
-•	données incohérentes pouvant impacter les analyses.
+# 📋 Fiche de Pilotage de Mission : Projet Retail Revelations
+
+## 🎯 1. Cadrage Métier & Problématiques
+
+### Analyse et Compréhension du Dataset
+*   **Secteur :** E-commerce spécialisé dans le retail (ventes au détail).
+*   **Périmètre :** Historique complet des mouvements sur plus de 24 mois.
+*   **Objectif :** Diagnostic de performance, optimisation des stocks et segmentation de la clientèle.
+
+### Problématiques Métier
+*   **Performance Commerciale :** Identification des "Best-sellers" et des segments à forte rentabilité.
+*   **Gestion des Risques :** Analyse des retours pour optimiser la logistique et la qualité produit.
+*   **Expansion Géographique :** Segmentation UK vs International pour orienter les investissements.
+*   **Saisonnalité :** Corrélation entre pics de ventes annuels et besoins en gestion de stock.
+
+---
+
+## 🔍 2. Diagnostic des Anomalies
+L'exploration a révélé plusieurs points de vigilance :
+*   **Données manquantes :** Traitement nécessaire sur les colonnes `Description` et `Customer ID`.
+*   **Ventes anonymes :** Identification d'un volume significatif de ventes sans client enregistré.
+*   **Formatage technique :** Correction du format de la colonne `InvoiceDate` (type `datetime`).
+*   **Valeurs financières négatives :** Distinction entre annulations, avoirs et retours clients.
+*   **Doublons :** Audit des 34 335 transactions dupliquées pour assurer l'intégrité comptable.
+
+---
 
 ## 🧹 3. Pipeline de Nettoyage
 1.  **Formatage :** Standardisation des types de données (`datetime`, `int`).
@@ -56,7 +34,6 @@ ________________________________________
 
 ---
 
-<<<<<<< HEAD
 ## 📈 4. Synthèse des Résultats & Recommandations
 
 | Axe d'analyse | Constat | Recommandation Stratégique |
@@ -69,10 +46,7 @@ ________________________________________
 ---
 
 ## 🚀 5. Prochaines Étapes
-
-*   **Automatisation :** Industrialisation du pipeline de nettoyage via un script modulaire et réutilisable pour le traitement de nouveaux flux de données.
-*   **Dashboarding :** Mise en place d'un tableau de bord dynamique permettant une visualisation en temps réel des indicateurs clés (KPIs) : Top produits, segmentation clients, saisonnalité mensuelle et performance par secteur géographique.
-*   **Approfondissement Analytique :** Utilisation de requêtes SQL complexes pour confirmer les tendances observées et affiner la précision de l'analyse segmentée.
-=======
->>>>>>> 7e7db7d (Mise à jour de la fiche de pilotage et de la note de cadrage)
+*   **Automatisation :** Création d'un script de nettoyage réutilisable pour les futurs datasets.
+*   **Dashboarding :** Visualisation des KPI en temps réel (Panier moyen, Taux d'attrition).
+*   **Soutenance :** Présentation des gains financiers liés à la gestion des anomalies.
 
